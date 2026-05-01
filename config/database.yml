@@ -23,7 +23,7 @@ development:
   <<: *default
   database: team_task_manager_development
   username: postgres
-  password: Nkamzobe7.
+  password: <%= ENV["DATABASE_PASSWORD"] %>
   host: localhost
 
   # The specified database role being used to connect to PostgreSQL.
@@ -60,7 +60,7 @@ test:
   <<: *default
   database: team_task_manager_test
   username: postgres
-  password: Nkamzobe7.
+  password: <%= ENV["DATABASE_PASSWORD"] %>
   host: localhost
 
 # As with config/credentials.yml, you never want to store sensitive information,
