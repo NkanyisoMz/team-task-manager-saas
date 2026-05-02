@@ -35,6 +35,9 @@ gem "jbuilder"
 #automatically loads environment variables from a .env file into ENV
 gem 'dotenv-rails'
 
+#Add Devise
+gem 'devise'
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
