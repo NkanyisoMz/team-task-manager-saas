@@ -1,3 +1,5 @@
 <h1><%= @project.name %></h1>
 
 <p><%= @project.description %></p>
+
+<%= link_to "View Tasks", team_project_tasks_path(@team, @project) %>
