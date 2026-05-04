@@ -1,0 +1,9 @@
+<h1>Your Teams</h1>
+
+<%= link_to "Create New Team", new_team_path %>
+
+<ul>
+  <% @teams.each do |team| %>
+    <li><%= team.name %></li>
+  <% end %>
+</ul>
