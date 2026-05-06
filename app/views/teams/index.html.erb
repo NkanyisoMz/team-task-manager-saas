@@ -6,6 +6,10 @@
   <% @teams.each do |team| %>
     <li>
       <%= link_to team.name, team_projects_path(team) %>
+
+      <% if current_user.memberships.find_by(team: team)&.admin? %>
+        <%= link_to "Invite User", new_team_invitation_path(team) %>
+    <% end %>
     </li>
   <% end %>
 </ul>
