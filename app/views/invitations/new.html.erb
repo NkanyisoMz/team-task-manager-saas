@@ -1,0 +1,17 @@
+<h1>Invite User</h1>
+
+<%= form_with model: [@team, @invitation] do |f| %>
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div>
+    <%= f.label :role %>
+    <%= f.select :role, Invitation.roles.keys %>
+  </div>
+
+  <div>
+    <%= f.submit "Send Invitation" %>
+  </div>
+<% end %>
