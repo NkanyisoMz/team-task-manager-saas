@@ -1,6 +1,8 @@
 <h1><%= @team.name %> Projects</h1>
 
-<%= link_to "New Project", new_team_project_path(@team) %>
+<% if current_user.memberships.find_by(team: @team)&.admin? %>
+  <%= link_to "New Project", new_team_project_path(@team) %>
+<% end %>
 
 <ul>
   <% @projects.each do |project| %>

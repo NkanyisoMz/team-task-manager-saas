@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_team
+  before_action :require_admin!, only: [:new, :create]
 
   def index
     @projects = @team.projects
