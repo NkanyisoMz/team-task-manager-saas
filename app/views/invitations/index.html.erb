@@ -1,0 +1,14 @@
+<h1>Your Invitations</h1>
+
+<ul>
+  <% @invitations.each do |invitation| %>
+    <li>
+      Team: <%= invitation.team.name %>
+      Role: <%= invitation.role %>
+
+      <%= button_to "Accept",
+          accept_team_invitation_path(invitation.team, invitation),
+          method: :post %>
+    </li>
+  <% end %>
+</ul>

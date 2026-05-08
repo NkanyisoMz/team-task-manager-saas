@@ -1,7 +1,11 @@
 class InvitationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_team
-  before_action :require_admin!
+  before_action :set_team, only: [:new, :create]
+  before_action :require_admin!, only: [:new, :create]
+
+  def index
+    @invitations = Invitation.where(email: current_user.email)
+  end
 
   def new
     @invitation = Invitation.new
@@ -16,6 +20,20 @@ class InvitationsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def accept
+  invitation = Invitation.find(params[:id])
+
+  Membership.create!(
+    user: current_user,
+    team: invitation.team,
+    role: invitation.role
+  )
+
+  invitation.destroy
+
+  redirect_to teams_path, notice: "You joined the team successfully."
+end
 
   private
 

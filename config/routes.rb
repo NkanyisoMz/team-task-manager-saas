@@ -2,14 +2,21 @@ Rails.application.routes.draw do
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-# App routes (multi-tenancy structure)
+  # Global invitations page
+  resources :invitations, only: [:index]
+
+  # App routes (multi-tenancy structure)
   resources :teams do
     resources :projects do
       resources :tasks do
         resources :comments
       end
+    end
 
-      resources :invitations, only: [:new, :create]
+    resources :invitations, only: [:new, :create] do
+      member do
+        post :accept
+      end
     end
   end
 
