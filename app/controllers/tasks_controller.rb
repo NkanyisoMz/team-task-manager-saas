@@ -3,6 +3,7 @@ class TasksController < ApplicationController
   before_action :set_team
   before_action :set_project
   before_action :require_admin!, only: [:new, :create]
+  before_action :set_task, only: [:show, :edit, :update]
 
   def index
     @tasks = @project.tasks
@@ -23,8 +24,23 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = @project.tasks.find(params[:id])
+    
   end
+
+  def edit
+  
+end
+
+def update
+  
+
+  if @task.update(task_params)
+    redirect_to team_project_task_path(@team, @project, @task),
+                notice: "Task updated"
+  else
+    render :edit, status: :unprocessable_entity
+  end
+end
 
   private
 
@@ -37,6 +53,10 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :status, :due_date)
+    params.require(:task).permit(:title, :description, :status, :due_date, :assignee_id)
+  end
+
+  def set_task
+    @task = @project.tasks.find(params[:id])
   end
 end

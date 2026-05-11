@@ -10,5 +10,7 @@
       <%= link_to task.title, team_project_task_path(@team, @project, task) %>
       (<%= task.status %>)
     </li>
+    - Assigned to:
+<%= task.assignee&.email || "Nobody" %>
   <% end %>
 </ul>

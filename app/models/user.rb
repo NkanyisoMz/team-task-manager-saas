@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :memberships
   has_many :teams, through: :memberships
   has_many :comments
+  has_many :assigned_tasks, class_name: "Task", foreign_key: "assignee_id"
 end
