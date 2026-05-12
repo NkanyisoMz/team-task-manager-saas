@@ -23,6 +23,15 @@
   </div>
 
   <div>
+  <%= form.label :status %>
+
+  <%= form.select :status,
+                  Task.statuses.keys.map { |status|
+                    [status.humanize, status]
+                  } %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 

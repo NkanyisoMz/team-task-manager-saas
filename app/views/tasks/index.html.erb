@@ -1,16 +1,20 @@
 <h1><%= @project.name %> Tasks</h1>
 
 <% if current_user.memberships.find_by(team: @team)&.admin? %>
-  <%= link_to "New Task", new_team_project_task_path(@team, @project) %>
+  <%= link_to "New Task",
+      new_team_project_task_path(@team, @project) %>
 <% end %>
 
 <ul>
   <% @tasks.each do |task| %>
     <li>
-      <%= link_to task.title, team_project_task_path(@team, @project, task) %>
-      (<%= task.status %>)
+      <%= link_to task.title,
+          team_project_task_path(@team, @project, task) %>
+
+      (<%= task.status.humanize %>)
+
+      - Assigned to:
+      <%= task.assignee&.email || "Nobody" %>
     </li>
-    - Assigned to:
-<%= task.assignee&.email || "Nobody" %>
   <% end %>
 </ul>
