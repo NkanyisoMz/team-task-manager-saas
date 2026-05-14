@@ -5,21 +5,51 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+ <body class="bg-gray-100 min-h-screen">
+
+  <% if user_signed_in? %>
+    <nav class="bg-white shadow mb-6">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+
+        <h1 class="text-2xl font-bold text-blue-600">
+          Team Task Manager
+        </h1>
+
+        <div class="flex items-center gap-4">
+
+          <span class="text-gray-700">
+            <%= current_user.email %>
+          </span>
+
+          <%= link_to "Dashboard",
+              root_path,
+              class: "text-blue-600 hover:text-blue-800" %>
+
+          <%= link_to "Teams",
+              teams_path,
+              class: "text-blue-600 hover:text-blue-800" %>
+
+          <%= link_to "Invitations",
+              invitations_path,
+              class: "text-blue-600 hover:text-blue-800" %>
+
+          <%= button_to "Log Out",
+              destroy_user_session_path,
+              method: :delete,
+              class: "bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600" %>
+
+        </div>
+      </div>
+    </nav>
+  <% end %>
+
+  <main class="max-w-7xl mx-auto px-4">
     <%= yield %>
-    <% if user_signed_in? %>
-  <p>
-    Logged in as <%= current_user.email %>
-  </p>
+  </main>
 
-  <%= link_to "Invitations", invitations_path %>
-
-  <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
-<% end %>
-  </body>
+</body>
 </html>
