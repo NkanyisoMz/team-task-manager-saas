@@ -1,17 +1,31 @@
-<h1>Invite User</h1>
+<h1 class="text-3xl font-bold mb-6">
+  Invite User
+</h1>
 
-<%= form_with model: [@team, @invitation] do |f| %>
+<%= form_with model: [@team, @invitation],
+              class: "bg-white shadow rounded-lg p-6 space-y-6" do |f| %>
+
   <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
+    <%= f.label :email,
+        class: "block font-medium mb-2" %>
+
+    <%= f.email_field :email,
+        class: "w-full border rounded px-3 py-2" %>
   </div>
 
   <div>
-    <%= f.label :role %>
-    <%= f.select :role, Invitation.roles.keys %>
+    <%= f.label :role,
+        class: "block font-medium mb-2" %>
+
+    <%= f.select :role,
+                 Invitation.roles.keys,
+                 {},
+                 class: "w-full border rounded px-3 py-2" %>
   </div>
 
   <div>
-    <%= f.submit "Send Invitation" %>
+    <%= f.submit "Send Invitation",
+        class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
   </div>
+
 <% end %>

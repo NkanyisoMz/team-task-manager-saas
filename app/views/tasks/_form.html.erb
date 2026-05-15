@@ -1,38 +1,52 @@
-<%= form_with(model: [@team, @project, @task]) do |form| %>
+<%= form_with(model: [@team, @project, @task],
+              class: "bg-white shadow rounded-lg p-6 space-y-6") do |form| %>
 
   <div>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.label :title,
+        class: "block font-medium mb-2" %>
+
+    <%= form.text_field :title,
+        class: "w-full border rounded px-3 py-2" %>
   </div>
 
   <div>
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.label :description,
+        class: "block font-medium mb-2" %>
+
+    <%= form.text_area :description,
+        class: "w-full border rounded px-3 py-2 h-32" %>
   </div>
 
   <div>
-    <%= form.label :assignee_id, "Assign To" %>
+    <%= form.label :assignee_id,
+        "Assign To",
+        class: "block font-medium mb-2" %>
 
     <%= form.collection_select(
           :assignee_id,
           @team.users,
           :id,
           :email,
-          prompt: "Select team member"
+          { prompt: "Select team member" },
+          { class: "w-full border rounded px-3 py-2" }
         ) %>
   </div>
 
   <div>
-  <%= form.label :status %>
+    <%= form.label :status,
+        class: "block font-medium mb-2" %>
 
-  <%= form.select :status,
-                  Task.statuses.keys.map { |status|
-                    [status.humanize, status]
-                  } %>
+    <%= form.select :status,
+                    Task.statuses.keys.map { |status|
+                      [status.humanize, status]
+                    },
+                    {},
+                    class: "w-full border rounded px-3 py-2" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class:
+        "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
   </div>
 
 <% end %>

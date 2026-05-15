@@ -1,20 +1,62 @@
-<h1><%= @project.name %> Tasks</h1>
+<div class="flex justify-between items-center mb-6">
 
-<% if current_user.memberships.find_by(team: @team)&.admin? %>
-  <%= link_to "New Task",
-      new_team_project_task_path(@team, @project) %>
-<% end %>
+  <h1 class="text-3xl font-bold">
+    <%= @project.name %> Tasks
+  </h1>
 
-<ul>
-  <% @tasks.each do |task| %>
-    <li>
-      <%= link_to task.title,
-          team_project_task_path(@team, @project, task) %>
+  <% if current_user.memberships.find_by(team: @team)&.admin? %>
 
-      (<%= task.status.humanize %>)
+    <%= link_to "New Task",
+        new_team_project_task_path(@team, @project),
+        class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
 
-      - Assigned to:
-      <%= task.assignee&.email || "Nobody" %>
-    </li>
   <% end %>
-</ul>
+
+</div>
+
+<div class="bg-white rounded-lg shadow p-6">
+
+  <% if @tasks.any? %>
+
+    <ul class="space-y-4">
+
+      <% @tasks.each do |task| %>
+
+        <li class="border rounded p-4 hover:bg-gray-50">
+
+          <div class="flex justify-between items-center">
+
+            <div>
+
+              <%= link_to task.title,
+                  team_project_task_path(@team, @project, task),
+                  class: "text-xl font-semibold text-blue-600 hover:underline" %>
+
+              <p class="text-sm text-gray-600 mt-1">
+                Assigned to:
+                <%= task.assignee&.email || "Nobody" %>
+              </p>
+
+            </div>
+
+            <span class="bg-gray-200 px-3 py-1 rounded text-sm">
+              <%= task.status.humanize %>
+            </span>
+
+          </div>
+
+        </li>
+
+      <% end %>
+
+    </ul>
+
+  <% else %>
+
+    <p class="text-gray-500">
+      No tasks yet.
+    </p>
+
+  <% end %>
+
+</div>

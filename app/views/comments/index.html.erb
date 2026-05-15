@@ -1,31 +1,75 @@
-<h1>Comments for: <%= @task.title %></h1>
+<div class="flex justify-between items-center mb-6">
 
-<%= link_to "Back to Task", team_project_task_path(@team, @project, @task) %>
+  <h1 class="text-3xl font-bold">
+    Comments
+  </h1>
 
-<hr>
+  <%= link_to "Back to Task",
+      team_project_task_path(@team, @project, @task),
+      class: "bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800" %>
 
-<h3>Add Comment</h3>
+</div>
 
-<%= form_with model: [@team, @project, @task, @comment] do |f| %>
-  <div>
-    <%= f.label :content %>
-    <%= f.text_area :content %>
-  </div>
+<div class="bg-white shadow rounded-lg p-6 mb-6">
 
-  <div>
-    <%= f.submit "Post Comment" %>
-  </div>
-<% end %>
+  <h2 class="text-xl font-semibold mb-4">
+    Add Comment
+  </h2>
 
-<hr>
+  <%= form_with model: [@team, @project, @task, @comment],
+                class: "space-y-4" do |f| %>
 
-<h3>All Comments</h3>
+    <div>
+      <%= f.label :content,
+          class: "block font-medium mb-2" %>
 
-<ul>
-  <% @comments.each do |comment| %>
-    <li>
-      <strong><%= comment.user.email %>:</strong>
-      <%= comment.content %>
-    </li>
+      <%= f.text_area :content,
+          class: "w-full border rounded px-3 py-2 h-32" %>
+    </div>
+
+    <div>
+      <%= f.submit "Post Comment",
+          class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+    </div>
+
   <% end %>
-</ul>
+
+</div>
+
+<div class="bg-white shadow rounded-lg p-6">
+
+  <h2 class="text-xl font-semibold mb-4">
+    All Comments
+  </h2>
+
+  <% if @comments.any? %>
+
+    <ul class="space-y-4">
+
+      <% @comments.each do |comment| %>
+
+        <li class="border rounded p-4">
+
+          <p class="font-semibold text-blue-600 mb-2">
+            <%= comment.user.email %>
+          </p>
+
+          <p class="text-gray-700">
+            <%= comment.content %>
+          </p>
+
+        </li>
+
+      <% end %>
+
+    </ul>
+
+  <% else %>
+
+    <p class="text-gray-500">
+      No comments yet.
+    </p>
+
+  <% end %>
+
+</div>

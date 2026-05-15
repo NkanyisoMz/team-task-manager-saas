@@ -1,22 +1,55 @@
-<h1><%= @task.title %></h1>
+<div class="bg-white shadow rounded-lg p-6">
 
-<p>
-  <strong>Assigned To:</strong>
+  <div class="flex justify-between items-start mb-6">
 
-  <% if @task.assignee %>
-    <%= @task.assignee.email %>
-  <% else %>
-    Unassigned
-  <% end %>
-</p>
+    <div>
 
-<p><%= @task.description %></p>
-<p>
-  <strong>Status:</strong>
-  <%= @task.status.humanize %>
-</p>
-<p>Due: <%= @task.due_date %></p>
-<%= link_to "Edit Task",
-            edit_team_project_task_path(@team, @project, @task) %>
-<%= link_to "View Comments",
-    team_project_task_comments_path(@team, @project, @task) %>
+      <h1 class="text-3xl font-bold mb-2">
+        <%= @task.title %>
+      </h1>
+
+      <span class="bg-gray-200 px-3 py-1 rounded text-sm">
+        <%= @task.status.humanize %>
+      </span>
+
+    </div>
+
+  </div>
+
+  <div class="space-y-4 text-gray-700">
+
+    <p>
+      <strong>Assigned To:</strong>
+
+      <% if @task.assignee %>
+        <%= @task.assignee.email %>
+      <% else %>
+        Unassigned
+      <% end %>
+    </p>
+
+    <p>
+      <strong>Description:</strong><br>
+      <%= @task.description %>
+    </p>
+
+    <p>
+      <strong>Due Date:</strong>
+      <%= @task.due_date || "Not set" %>
+    </p>
+
+  </div>
+
+  <div class="flex gap-4 mt-8">
+
+    <%= link_to "Edit Task",
+        edit_team_project_task_path(@team, @project, @task),
+        class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+
+    <%= link_to "View Comments",
+        team_project_task_comments_path(@team, @project, @task),
+        class: "bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800" %>
+
+  </div>
+
+</div>

@@ -1,17 +1,29 @@
-<h1>New Project</h1>
+<h1 class="text-3xl font-bold mb-6">
+  New Project
+</h1>
 
-<%= form_with model: [@team, @project] do |f| %>
+<%= form_with model: [@team, @project],
+              class: "bg-white shadow rounded-lg p-6 space-y-6" do |f| %>
+
   <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.label :name,
+        class: "block font-medium mb-2" %>
+
+    <%= f.text_field :name,
+        class: "w-full border rounded px-3 py-2" %>
   </div>
 
   <div>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.label :description,
+        class: "block font-medium mb-2" %>
+
+    <%= f.text_area :description,
+        class: "w-full border rounded px-3 py-2 h-32" %>
   </div>
 
   <div>
-    <%= f.submit "Create Project" %>
+    <%= f.submit "Create Project",
+        class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
   </div>
+
 <% end %>

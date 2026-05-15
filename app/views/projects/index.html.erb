@@ -1,13 +1,45 @@
-<h1><%= @team.name %> Projects</h1>
+<div class="flex justify-between items-center mb-6">
 
-<% if current_user.memberships.find_by(team: @team)&.admin? %>
-  <%= link_to "New Project", new_team_project_path(@team) %>
-<% end %>
+  <h1 class="text-3xl font-bold">
+    <%= @team.name %> Projects
+  </h1>
 
-<ul>
-  <% @projects.each do |project| %>
-    <li>
-      <%= link_to project.name, team_project_path(@team, project) %>
-    </li>
+  <% if current_user.memberships.find_by(team: @team)&.admin? %>
+
+    <%= link_to "New Project",
+        new_team_project_path(@team),
+        class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+
   <% end %>
-</ul>
+
+</div>
+
+<div class="bg-white rounded-lg shadow p-6">
+
+  <% if @projects.any? %>
+
+    <ul class="space-y-4">
+
+      <% @projects.each do |project| %>
+
+        <li class="border rounded p-4 hover:bg-gray-50">
+
+          <%= link_to project.name,
+              team_project_path(@team, project),
+              class: "text-xl font-semibold text-blue-600 hover:underline" %>
+
+        </li>
+
+      <% end %>
+
+    </ul>
+
+  <% else %>
+
+    <p class="text-gray-500">
+      No projects yet.
+    </p>
+
+  <% end %>
+
+</div>

@@ -1,12 +1,21 @@
-<h1>New Team</h1>
+<h1 class="text-3xl font-bold mb-6">
+  New Team
+</h1>
 
-<%= form_with model: @team do |f| %>
+<%= form_with model: @team,
+              class: "bg-white shadow rounded-lg p-6 space-y-6" do |f| %>
+
   <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.label :name,
+        class: "block font-medium mb-2" %>
+
+    <%= f.text_field :name,
+        class: "w-full border rounded px-3 py-2" %>
   </div>
 
   <div>
-    <%= f.submit "Create Team" %>
+    <%= f.submit "Create Team",
+        class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
   </div>
+
 <% end %>
