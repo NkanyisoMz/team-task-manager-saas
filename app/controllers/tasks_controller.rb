@@ -6,7 +6,9 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update]
 
   def index
-    @tasks = @project.tasks
+  tasks = Task.where(project: @project)
+
+  @pagy, @tasks = pagy(tasks)
   end
 
   def new

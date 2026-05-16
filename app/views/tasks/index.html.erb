@@ -60,3 +60,9 @@
   <% end %>
 
 </div>
+<div class="mt-6">
+  <p>Total pages: <%= @pagy.pages %></p>
+
+  <p>Total count: <%= @pagy.count %></p>
+  <%== pagy_nav(@pagy) %>
+</div>
