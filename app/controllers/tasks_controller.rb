@@ -8,6 +8,18 @@ class TasksController < ApplicationController
   def index
   tasks = Task.where(project: @project)
 
+  if params[:query].present?
+    tasks = tasks.where(
+      "title ILIKE ? OR description ILIKE ?",
+      "%#{params[:query]}%",
+      "%#{params[:query]}%"
+    )
+  end
+
+  if params[:status].present?
+    tasks = tasks.where(status: params[:status])
+  end
+
   @pagy, @tasks = pagy(tasks)
   end
 

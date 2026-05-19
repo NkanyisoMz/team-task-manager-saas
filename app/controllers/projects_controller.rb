@@ -5,6 +5,14 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = @team.projects
+
+    if params[:query].present?
+      @projects = @projects.where(
+      "name ILIKE ? OR description ILIKE ?",
+      "%#{params[:query]}%",
+      "%#{params[:query]}%"
+      )
+    end
   end
 
   def new

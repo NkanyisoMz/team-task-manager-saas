@@ -14,6 +14,42 @@
 
 </div>
 
+<div class="bg-white p-4 rounded-lg shadow mb-6">
+
+  <%= form_with url: team_project_tasks_path(@team, @project),
+                method: :get,
+                local: true,
+                class: "flex flex-col md:flex-row gap-4" do |form| %>
+
+    <div class="flex-1">
+      <%= form.text_field :query,
+          value: params[:query],
+          placeholder: "Search tasks...",
+          class: "w-full border rounded px-3 py-2" %>
+    </div>
+
+    <div>
+      <%= form.select :status,
+          options_for_select(
+            [["All Statuses", ""]] +
+            Task.statuses.keys.map { |status|
+              [status.humanize, status]
+            },
+            params[:status]
+          ),
+          {},
+          class: "border rounded px-3 py-2" %>
+    </div>
+
+    <div>
+      <%= form.submit "Filter",
+          class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+    </div>
+
+  <% end %>
+
+</div>
+
 <div class="bg-white rounded-lg shadow p-6">
 
   <% if @tasks.any? %>
