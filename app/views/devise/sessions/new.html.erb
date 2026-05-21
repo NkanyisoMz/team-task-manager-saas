@@ -36,3 +36,11 @@
   <% end %>
 
 </div>
+
+<p class="mt-4 text-center">
+  Don't have an account?
+
+  <%= link_to "Sign up",
+      new_registration_path(resource_name),
+      class: "text-blue-600 hover:underline" %>
+</p>
