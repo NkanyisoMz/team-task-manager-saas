@@ -1,7 +1,16 @@
 # Team Task Manager SaaS
 
-A multi-tenant project management application inspired by tools like Trello and Asana.  
-Built with Ruby on Rails to practice scalable backend architecture, collaboration workflows, and SaaS development concepts.
+A multi-tenant project management application inspired by tools like Trello and Asana.
+
+Built with Ruby on Rails to practice scalable backend architecture, team collaboration workflows, background job processing, and SaaS application design.
+
+---
+
+## Live Demo
+
+Deployed on Render:
+
+https://your-render-url.onrender.com
 
 ---
 
@@ -10,30 +19,37 @@ Built with Ruby on Rails to practice scalable backend architecture, collaboratio
 ### Authentication & Authorization
 - User authentication with Devise
 - Role-based authorization (Admin / Member)
-- Protected routes and team access control
+- Protected team and project access
 
 ### Multi-Tenancy
 - Teams/workspaces
 - Team memberships
-- Scoped projects and tasks per team
+- Scoped projects and tasks per organization
 
 ### Project Management
 - Create and manage projects
 - Create and manage tasks
 - Task status tracking
+- Task assignments
 - Due dates
-- Nested resources
+- Pagination and filtering
 
 ### Collaboration
 - Task comments
 - Team invitations
-- Invitation acceptance flow
-- Email notifications for invitations
+- Invitation acceptance workflow
+- Email notifications
 
 ### Background Processing
 - Redis integration
 - Sidekiq background jobs
 - Async email delivery with ActiveJob
+
+### DevOps & Deployment
+- Dockerized application
+- Docker Compose setup
+- CI/CD with GitHub Actions
+- Production deployment on Render
 
 ---
 
@@ -51,9 +67,19 @@ Built with Ruby on Rails to practice scalable backend architecture, collaboratio
 - Sidekiq
 - Redis
 
-### Development Tools
-- Git & GitHub
-- Letter Opener (development emails)
+### Frontend
+- ERB
+- Tailwind CSS
+
+### DevOps
+- Docker
+- Docker Compose
+- GitHub Actions
+- Render
+
+### Testing
+- RSpec
+- FactoryBot
 
 ---
 
@@ -66,7 +92,8 @@ Built with Ruby on Rails to practice scalable backend architecture, collaboratio
 - Async workflows
 - Role-based authorization
 - Database associations
-- Email delivery pipelines
+- CI/CD workflows
+- Containerized deployment
 
 ---
 
@@ -82,19 +109,19 @@ Built with Ruby on Rails to practice scalable backend architecture, collaboratio
 
 ---
 
-## Current Workflow
+## Application Workflow
 
 1. Users sign up and log in
 2. Admins create teams
-3. Teams contain projects
+3. Teams manage projects
 4. Projects contain tasks
-5. Tasks contain comments
+5. Team members collaborate through comments
 6. Admins invite users via email
-7. Invitations are processed asynchronously using Sidekiq
+7. Invitation emails are processed asynchronously with Sidekiq
 
 ---
 
-## Setup
+## Local Development Setup
 
 ### Clone Repository
 
@@ -134,18 +161,25 @@ bundle exec sidekiq
 rails server
 ```
 
+### Docker Setup
+```bash
+docker compose up
+```
+
+### Running Tests
+```bash
+bundle exec rspec
+```
+
 ---
 
 ## Future Improvements
 
-- Docker setup
 - Real-time notifications with ActionCable
-- Task assignments
-- Activity feed
 - File uploads
-- Search functionality
-- API support
-- Deployment pipeline
+- Mobile API support
+- Activity tracking
+- Advanced analytical dashboard
 - CI/CD integration
 
 ---
