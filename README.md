@@ -10,7 +10,7 @@ Built with Ruby on Rails to practice scalable backend architecture, team collabo
 
 Deployed on Render:
 
-https://your-render-url.onrender.com
+https://team-task-manager-saas.onrender.com
 
 ---
 
