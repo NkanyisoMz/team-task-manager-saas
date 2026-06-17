@@ -12,6 +12,44 @@ Deployed on Render:
 
 https://team-task-manager-saas.onrender.com
 
+## Screenshots
+
+### Login Page
+
+![Login Page](docs/screenshots/login-page.png)
+
+### Sign up Page
+
+![Sign up Page](docs/screenshots/sign-up.png)
+
+### Dashboard
+
+![Dashboard](docs/screenshots/dashboard.png)
+
+### Teams
+
+![Teams](docs/screenshots/teams.png)
+
+### Projects
+
+![Projects](docs/screenshots/projects.png)
+
+### Task Details
+
+![Task Details](docs/screenshots/task-details.png)
+
+### Collaboration & Comments
+
+![Comments](docs/screenshots/comments.png)
+
+### Team Invitations
+
+![Invitations](docs/screenshots/invitations.png)
+
+### CI/CD Pipeline
+
+![GitHub Actions](docs/screenshots/github-actions.png)
+
 ---
 
 ## Features
