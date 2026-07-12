@@ -218,15 +218,9 @@ bundle exec rspec
 - Mobile API support
 - Activity tracking
 - Advanced analytical dashboard
-- CI/CD integration
 
 ---
 
-## Screenshots
-
-Coming soon.
-
----
 
 ## Author
 
