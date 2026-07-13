@@ -31,14 +31,8 @@ class TasksController < ApplicationController
     @task = @project.tasks.new(task_params)
 
     if @task.save
-      respond_to do |format|
-        format.html do
-          redirect_to team_project_tasks_path(@team, @project),
-                    notice: "Task created"
-        end
-
-      format.turbo_stream
-      end
+      redirect_to team_project_tasks_path(@team, @project),
+                notice: "Task created"
     else
       render :new, status: :unprocessable_entity
     end

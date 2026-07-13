@@ -50,13 +50,12 @@
 
 </div>
 
-<%= turbo_frame_tag "tasks" do %>
 
 <div class="bg-white rounded-lg shadow p-6">
 
   <% if @tasks.any? %>
 
-    <ul id="tasks_list" class="space-y-4">
+    <ul class="space-y-4">
 
       <%= render @tasks %>
 
@@ -72,7 +71,6 @@
 
 </div>
 
-<% end %>
 
 <div class="mt-6">
   <p>Total pages: <%= @pagy.pages %></p>
