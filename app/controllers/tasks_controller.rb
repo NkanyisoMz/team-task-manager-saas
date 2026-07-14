@@ -50,8 +50,16 @@ def update
 
 
   if @task.update(task_params)
-    redirect_to team_project_task_path(@team, @project, @task),
-                notice: "Task updated"
+
+    respond_to do |format|
+
+      format.html do
+        redirect_to team_project_task_path(@team, @project, @task),
+                    notice: "Task updated"
+      end
+
+      format.turbo_stream
+    end
   else
     render :edit, status: :unprocessable_entity
   end
