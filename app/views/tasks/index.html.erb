@@ -53,15 +53,13 @@
 
 <div class="bg-white rounded-lg shadow p-6">
 
-  <% if @tasks.any? %>
+  <ul id="tasks" class="space-y-4">
 
-    <ul class="space-y-4">
+    <%= render @tasks %>
 
-      <%= render @tasks %>
+  </ul>
 
-    </ul>
-
-  <% else %>
+  <% if @tasks.empty? %>
 
     <p class="text-gray-500">
       No tasks yet.

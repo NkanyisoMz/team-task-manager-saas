@@ -27,16 +27,28 @@ class TasksController < ApplicationController
     @task = @project.tasks.new
   end
 
-  def create
-    @task = @project.tasks.new(task_params)
+def create
+  @task = @project.tasks.new(task_params)
 
-    if @task.save
-      redirect_to team_project_tasks_path(@team, @project),
-                notice: "Task created"
-    else
-      render :new, status: :unprocessable_entity
+  if @task.save
+
+    respond_to do |format|
+
+      format.html do
+        redirect_to team_project_tasks_path(@team, @project),
+                    notice: "Task created"
+      end
+
+      format.turbo_stream
+
     end
+
+  else
+
+    render :new, status: :unprocessable_entity
+
   end
+end
 
   def show
 
