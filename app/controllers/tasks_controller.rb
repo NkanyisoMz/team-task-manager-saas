@@ -21,6 +21,8 @@ class TasksController < ApplicationController
   end
 
   @pagy, @tasks = pagy(tasks)
+
+  @task = @project.tasks.new
   end
 
   def new
@@ -31,6 +33,9 @@ def create
   @task = @project.tasks.new(task_params)
 
   if @task.save
+
+    @saved_task = @task
+    @task = @project.tasks.new
 
     respond_to do |format|
 
@@ -45,8 +50,15 @@ def create
 
   else
 
-    render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html do
+          render :new, status: :unprocessable_content
+        end
 
+        format.turbo_stream do
+          render :create, status: :unprocessable_content
+        end
+      end
   end
 end
 
@@ -73,7 +85,7 @@ def update
       format.turbo_stream
     end
   else
-    render :edit, status: :unprocessable_entity
+    render :edit, status: :unprocessable_content
   end
 end
 

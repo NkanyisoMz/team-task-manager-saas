@@ -1,5 +1,22 @@
+<% if @saved_task.present? %>
 <%= turbo_stream.append "tasks" do %>
-  <%= render @task %>
+  <%= render @saved_task %>
 <% end %>
 
+
+<%= turbo_stream.replace "new_task" do %>
+
+  <%= render "new_task_form" %>
+
+<% end %>
+
+
 <%= turbo_stream.remove "empty_tasks_message" %>
+
+<% else %>
+
+  <%= turbo_stream.replace "new_task" do %>
+    <%= render "new_task_form" %>
+  <% end %>
+
+<% end %>

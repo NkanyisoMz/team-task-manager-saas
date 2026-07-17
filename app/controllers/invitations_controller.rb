@@ -11,15 +11,15 @@ class InvitationsController < ApplicationController
     @invitation = Invitation.new
   end
 
-  def create 
+  def create
     @invitation = @team.invitations.new(invitation_params)
-    
+
     if @invitation.save
       InvitationEmailJob.perform_later(@invitation)
-      
+
       redirect_to teams_path, notice: "Invitation created"
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 

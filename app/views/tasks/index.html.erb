@@ -4,15 +4,14 @@
     <%= @project.name %> Tasks
   </h1>
 
-  <% if current_user.memberships.find_by(team: @team)&.admin? %>
-
-    <%= link_to "New Task",
-        new_team_project_task_path(@team, @project),
-        class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
-
-  <% end %>
 
 </div>
+
+<% if current_user.memberships.find_by(team: @team)&.admin? %>
+
+  <%= render "new_task_form" %>
+
+<% end %>
 
 <div class="bg-white p-4 rounded-lg shadow mb-6">
 

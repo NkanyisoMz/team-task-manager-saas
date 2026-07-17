@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
                   notice: "Comment added"
     else
       @comments = @task.comments.includes(:user)
-      render :index, status: :unprocessable_entity
+      render :index, status: :unprocessable_content
     end
   end
 

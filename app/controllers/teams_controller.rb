@@ -22,7 +22,7 @@ class TeamsController < ApplicationController
 
       redirect_to teams_path, notice: "Team created successfully"
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
