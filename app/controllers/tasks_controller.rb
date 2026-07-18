@@ -37,6 +37,8 @@ def create
     @saved_task = @task
     @task = @project.tasks.new
 
+    flash.now[:notice] = "Task created successfully."
+
     respond_to do |format|
 
       format.html do
@@ -49,6 +51,8 @@ def create
     end
 
   else
+
+    flash.now[:alert] = "Please correct the errors below."
 
       respond_to do |format|
         format.html do

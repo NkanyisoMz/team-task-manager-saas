@@ -10,6 +10,10 @@
 
 <% end %>
 
+<%= turbo_stream.replace "flash" do %>
+  <%= render "shared/flash" %>
+<% end %>
+
 
 <%= turbo_stream.remove "empty_tasks_message" %>
 
@@ -18,5 +22,9 @@
   <%= turbo_stream.replace "new_task" do %>
     <%= render "new_task_form" %>
   <% end %>
+
+  <%= turbo_stream.replace "flash" do %>
+  <%= render "shared/flash" %>
+<% end %>
 
 <% end %>
