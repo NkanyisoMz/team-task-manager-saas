@@ -33,15 +33,12 @@
   </div>
 
   <div>
-    <%= form.label :status,
-        class: "block font-medium mb-2" %>
 
     <%= form.select :status,
-                    Task.statuses.keys.map { |status|
-                      [status.humanize, status]
-                    },
-                    {},
-                    class: "w-full border rounded px-3 py-2" %>
+        Task.statuses.keys.map { |status| [status.humanize, status] },
+        {},
+        onchange: "this.form.requestSubmit()",
+        class: "w-full rounded px-3 py-2 #{form.object.status_classes}" %>
   </div>
 
   <div>

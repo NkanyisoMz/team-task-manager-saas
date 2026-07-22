@@ -18,11 +18,11 @@
 
             <%= form_with model: [@team, @project, task] do |form| %>
 
-              <%= form.select :status,
-                  Task.statuses.keys.map { |status| [status.humanize, status]},
-                  {},
-                  onchange: "this.form.requestSubmit()",
-                  class: "border rounded px-2 py-1 text-sm" %>
+                <%= form.select :status,
+                    Task.statuses.keys.map { |status| [status.humanize, status] },
+                    {},
+                    onchange: "this.form.requestSubmit()",
+                    class: "rounded px-2 py-1 text-sm #{task.status_classes}" %>
 
             <% end %>
 
