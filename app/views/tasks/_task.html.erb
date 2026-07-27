@@ -16,25 +16,27 @@
 
             </div>
 
-            <%= form_with model: [@team, @project, task] do |form| %>
+            <div class="flex items-center gap-3">
 
-                <%= form.select :status,
-                    Task.statuses.keys.map { |status| [status.humanize, status] },
-                    {},
-                    onchange: "this.form.requestSubmit()",
-                    class: "rounded px-2 py-1 text-sm #{task.status_classes}" %>
+              <%= form_with model: [@team, @project, task] do |form| %>
 
-            <% end %>
+                  <%= form.select :status,
+                      Task.statuses.keys.map { |status| [status.humanize, status] },
+                      {},
+                      onchange: "this.form.requestSubmit()",
+                      class: "rounded px-2 py-1 text-sm #{task.status_classes}" %>
+
+              <% end %>
+
+            <%= button_to "Delete",
+              team_project_task_path(@team, @project, task),
+              method: :delete,
+              data: {
+                turbo_confirm: "Are you sure you want to delete this task?"
+              },
+              class: "bg-red-600 text-white px-3 py-2 rounded hover:bg-red-700 text-sm font-medium" %>
 
           </div>
-
-          <%= button_to "Delete",
-            team_project_task_path(@team, @project, task),
-            method: :delete,
-            data: {
-              turbo_confirm: "Are you sure you want to delete this task?"
-            },
-            class: "text-red-600 hover:text-red-800 text-sm" %>
 
 </li>
 <% end %>

@@ -96,6 +96,8 @@ end
 def destroy
   @task.destroy
 
+  flash.now[:notice] = "Task deleted successfully."
+
   respond_to do |format|
     format.html do
       redirect_to team_project_tasks_path(@team, @project),
