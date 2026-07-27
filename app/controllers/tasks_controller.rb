@@ -2,8 +2,8 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_team
   before_action :set_project
-  before_action :require_admin!, only: [:new, :create]
-  before_action :set_task, only: [:show, :edit, :update]
+  before_action :require_admin!, only: [:new, :create, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
   tasks = Task.where(project: @project)
@@ -90,6 +90,19 @@ def update
     end
   else
     render :edit, status: :unprocessable_content
+  end
+end
+
+def destroy
+  @task.destroy
+
+  respond_to do |format|
+    format.html do
+      redirect_to team_project_tasks_path(@team, @project),
+                  notice: "Task deleted successfully."
+    end
+
+    format.turbo_stream
   end
 end
 
