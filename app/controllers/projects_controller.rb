@@ -1,7 +1,8 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_team
-  before_action :require_admin!, only: [:new, :create]
+  before_action :require_admin!, only: [:new, :create, :destroy]
+  before_action :set_project, only: [:show, :destroy]
 
   def index
     @projects = @team.projects
@@ -30,7 +31,22 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = @team.projects.find(params[:id])
+
+  end
+
+  def destroy
+    @project.destroy
+
+    flash.now[:notice] = "Project deleted successfully."
+
+    respond_to do |format|
+      format.html do
+        redirect_to team_projects_path(@team),
+                    notice: "Project deleted successfully."
+      end
+
+      format.turbo_stream
+    end
   end
 
   private
@@ -41,5 +57,9 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:name, :description)
+  end
+
+  def set_project
+    @project = @team.projects.find(params[:id])
   end
 end
