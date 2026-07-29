@@ -39,7 +39,9 @@
 
     <ul class="space-y-4">
 
-     <%= render @projects %>
+      <%= render "project_list",
+      projects: @projects,
+      team: @team %>
 
     </ul>
 

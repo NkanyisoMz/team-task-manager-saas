@@ -1,5 +1,5 @@
-<%= turbo_frame_tag dom_id(project) do %>
-  <li class="border rounded p-4 hover:bg-gray-50 flex justify-between items-center">
+<li id="<%= dom_id(project) %>"
+    class="border rounded p-4 hover:bg-gray-50 flex justify-between items-center">
 
     <%= link_to project.name,
         team_project_path(project.team, project),
@@ -15,5 +15,4 @@
           class: "bg-red-600 text-white px-3 py-2 rounded hover:bg-red-700 text-sm font-medium" %>
     <% end %>
 
-  </li>
-<% end %>
+</li>

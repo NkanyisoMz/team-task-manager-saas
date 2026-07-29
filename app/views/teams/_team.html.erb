@@ -1,0 +1,33 @@
+<li id="<%= dom_id(team) %>"
+    class="border rounded p-4 hover:bg-gray-50">
+
+        <div class="flex justify-between items-center">
+
+            <%= link_to team.name,
+                team_projects_path(team),
+                class: "text-xl font-semibold text-blue-600 hover:underline" %>
+
+            <% if current_user.memberships.find_by(team: team)&.admin? %>
+
+                <div class="flex gap-2">
+
+                    <%= link_to "Invite User",
+                        new_team_invitation_path(team),
+                        class: "bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700" %>
+
+                    <%= button_to "Delete",
+                        team_path(team),
+                        method: :delete,
+                        data: {
+                        turbo_confirm: "Delete this team and everything inside it?"
+                        },
+                        class: "bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700" %>
+
+                </div>
+
+            <% end %>
+
+        </div>
+
+</li>
+

@@ -16,29 +16,7 @@
 
     <ul class="space-y-4">
 
-      <% @teams.each do |team| %>
-
-        <li class="border rounded p-4 hover:bg-gray-50">
-
-          <div class="flex justify-between items-center">
-
-            <%= link_to team.name,
-                team_projects_path(team),
-                class: "text-xl font-semibold text-blue-600 hover:underline" %>
-
-            <% if current_user.memberships.find_by(team: team)&.admin? %>
-
-              <%= link_to "Invite User",
-                  new_team_invitation_path(team),
-                  class: "bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700" %>
-
-            <% end %>
-
-          </div>
-
-        </li>
-
-      <% end %>
+      <%= render @teams %>
 
     </ul>
 

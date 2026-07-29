@@ -1,5 +1,5 @@
-<%= turbo_frame_tag @task do %>
-<div class="bg-white shadow rounded-lg p-6">
+<div id="<%= dom_id(@task) %>"
+     class="bg-white shadow rounded-lg p-6">
 
   <div class="flex justify-between items-start mb-6">
 
@@ -54,4 +54,3 @@
   </div>
 
 </div>
-<% end %>

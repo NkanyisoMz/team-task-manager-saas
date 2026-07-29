@@ -1,4 +1,9 @@
-<%= turbo_stream.remove @project %>
+<%= turbo_stream.replace "projects_list" do %>
+  <%= render "projects/project_list",
+      projects: @projects,
+      team: @team %>
+<% end %>
+
 
 <%= turbo_stream.replace "flash" do %>
   <%= render "shared/flash" %>

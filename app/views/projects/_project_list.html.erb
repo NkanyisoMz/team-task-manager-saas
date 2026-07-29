@@ -1,0 +1,27 @@
+<div id="projects_list" class="bg-white rounded-lg shadow p-6">
+
+  <% if projects.any? %>
+
+    <ul class="space-y-4">
+      <%= render projects %>
+    </ul>
+
+  <% else %>
+
+    <div class="text-center py-8">
+
+      <p class="text-gray-500 mb-4">
+        No projects yet.
+      </p>
+
+      <% if current_user.memberships.find_by(team: team)&.admin? %>
+        <%= link_to "Create a Project",
+            new_team_project_path(team),
+            class: "inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+      <% end %>
+
+    </div>
+
+  <% end %>
+
+</div>
