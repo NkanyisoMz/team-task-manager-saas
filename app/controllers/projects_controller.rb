@@ -37,6 +37,8 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
 
+    @projects = @team.projects
+
     flash.now[:notice] = "Project deleted successfully."
 
     respond_to do |format|
