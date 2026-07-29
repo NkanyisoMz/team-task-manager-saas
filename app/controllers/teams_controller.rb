@@ -1,5 +1,7 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_team, only: :destroy
+  before_action :require_admin!, only: :destroy
 
   def index
     @teams = current_user.teams
@@ -26,9 +28,28 @@ class TeamsController < ApplicationController
     end
   end
 
+  def destroy
+    @team.destroy
+
+    flash.now[:notice] = "Team deleted successfully."
+
+    respond_to do |format|
+      format.html do
+        redirect_to teams_path,
+                    notice: "Team deleted successfully."
+      end
+
+      format.turbo_stream
+    end
+  end
+
   private
 
   def team_params
     params.require(:team).permit(:name)
+  end
+
+  def set_team
+    @team = current_user.teams.find(params[:id])
   end
 end
