@@ -15,17 +15,40 @@
     </h2>
 
     <% if @assigned_tasks.any? %>
-      <ul class="space-y-3">
+      <ul class="space-y-4">
         <% @assigned_tasks.each do |task| %>
-          <li class="border-b pb-2">
-            <div class="font-medium">
-              <%= task.title %>
+          <li class="border-b last:border-b-0 pb-4 last:pb-0">
+
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+
+              <div>
+                <%= link_to task.title,
+                    team_project_task_path(
+                      task.project.team,
+                      task.project,
+                      task
+                    ),
+                    class: "font-semibold text-blue-600 hover:underline" %>
+
+                <p class="text-sm text-gray-500 mt-1">
+                  <%= task.project.name %>
+                  ·
+                  <%= task.project.team.name %>
+                </p>
+
+                <div class="mt-3">
+                  <span class="inline-flex items-center border rounded-full px-2.5 py-1 text-xs font-medium <%= task_due_date_classes(task) %>">
+                    <%= task_due_date_text(task) %>
+                  </span>
+                </div>
+              </div>
+
+              <span class="inline-flex self-start border rounded-full px-3 py-1 text-xs font-medium <%= task.status_classes %>">
+                <%= task.status.humanize %>
+              </span>
+
             </div>
 
-            <div class="text-sm text-gray-600">
-              Status:
-              <%= task.status.humanize %>
-            </div>
           </li>
         <% end %>
       </ul>
