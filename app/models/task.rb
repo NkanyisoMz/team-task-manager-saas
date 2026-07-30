@@ -7,6 +7,28 @@ class Task < ApplicationRecord
 
   validates :title, presence: true
 
+  def overdue?
+    due_date.present? &&
+      !completed? &&
+      due_date.to_date < Date.current
+  end
+
+  def due_today?
+    due_date.present? &&
+      !completed? &&
+      due_date.to_date == Date.current
+  end
+
+  def due_soon?
+    return false if due_date.blank? || completed?
+
+    date = due_date.to_date
+
+    date > Date.current &&
+      date <= 7.days.from_now.to_date
+  end
+
+
   def status_classes
     case status
     when "todo"

@@ -9,7 +9,7 @@
         <%= @task.title %>
       </h1>
 
-      <span class="bg-gray-200 px-3 py-1 rounded text-sm">
+      <span class="inline-block border rounded-full px-3 py-1 text-sm font-medium <%= @task.status_classes %>">
         <%= @task.status.humanize %>
       </span>
 
@@ -34,11 +34,21 @@
       <%= @task.description %>
     </p>
 
-    <p>
-      <strong>Due Date:</strong>
-      <%= @task.due_date || "Not set" %>
-    </p>
+    <div>
+      <strong class="block mb-2">
+        Due Date:
+      </strong>
 
+      <span class="inline-block border rounded-full px-3 py-1 text-sm font-medium <%= task_due_date_classes(@task) %>">
+        <%= task_due_date_text(@task) %>
+      </span>
+
+      <% if @task.due_date.present? %>
+        <p class="text-sm text-gray-500 mt-2">
+          <%= @task.due_date.to_date.strftime("%A, %d %B %Y") %>
+        </p>
+      <% end %>
+    </div>
   </div>
 
   <div class="flex gap-4 mt-8">

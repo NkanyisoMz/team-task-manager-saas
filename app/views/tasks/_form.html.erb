@@ -33,6 +33,16 @@
   </div>
 
   <div>
+    <%= form.label :due_date,
+        "Due Date",
+        class: "block font-medium mb-2" %>
+
+    <%= form.date_field :due_date,
+        min: Date.current,
+        class: "w-full border rounded px-3 py-2" %>
+  </div>
+
+  <div>
 
     <%= form.select :status,
         Task.statuses.keys.map { |status| [status.humanize, status] },
