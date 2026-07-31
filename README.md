@@ -2,29 +2,19 @@
 
 A multi-tenant project management application inspired by tools like Trello and Asana.
 
-Built with Ruby on Rails to practice scalable backend architecture, team collaboration workflows, background job processing, and SaaS application design.
+The application enables teams to collaborate by managing projects, assigning tasks, commenting on work, and inviting members to shared workspaces. It demonstrates modern backend engineering practices including authentication, authorization, background job processing, containerized deployment, and CI/CD.
 
 ---
 
 ## Live Demo
 
-Deployed on Render:
-
-https://team-task-manager-saas.onrender.com
+🔗 https://team-task-manager-saas.onrender.com
 
 ## Screenshots
 
-### Login Page
-
-![Login Page](docs/screenshots/login-page.png)
-
-### Sign up Page
-
-![Sign up Page](docs/screenshots/sign-up.png)
-
 ### Dashboard
 
-![Dashboard](docs/screenshots/dashboard.png)
+![Dashboard](docs/screenshots/Dashboard.png)
 
 ### Teams
 
@@ -33,6 +23,10 @@ https://team-task-manager-saas.onrender.com
 ### Projects
 
 ![Projects](docs/screenshots/projects.png)
+
+### Tasks
+
+![Tasks](docs/screenshots/tasks.png)
 
 ### Task Details
 
@@ -45,6 +39,14 @@ https://team-task-manager-saas.onrender.com
 ### Team Invitations
 
 ![Invitations](docs/screenshots/invitations.png)
+
+### Login Page
+
+![Login Page](docs/screenshots/login-page.png)
+
+### Sign up Page
+
+![Sign up Page](docs/screenshots/sign-up.png)
 
 ### CI/CD Pipeline
 
@@ -59,6 +61,13 @@ https://team-task-manager-saas.onrender.com
 - Role-based authorization (Admin / Member)
 - Protected team and project access
 
+
+### Collaboration
+- Task comments
+- Team invitations
+- Invitation acceptance workflow
+- Email notifications
+
 ### Multi-Tenancy
 - Teams/workspaces
 - Team memberships
@@ -72,11 +81,6 @@ https://team-task-manager-saas.onrender.com
 - Due dates
 - Pagination and filtering
 
-### Collaboration
-- Task comments
-- Team invitations
-- Invitation acceptance workflow
-- Email notifications
 
 ### Background Processing
 - Redis integration
@@ -108,6 +112,7 @@ https://team-task-manager-saas.onrender.com
 ### Frontend
 - ERB
 - Tailwind CSS
+- Turbo Streams
 
 ### DevOps
 - Docker
@@ -121,7 +126,7 @@ https://team-task-manager-saas.onrender.com
 
 ---
 
-## Architecture Concepts Practiced
+## Backend Engineering Concepts Demonstrated
 
 - MVC architecture
 - Multi-tenant SaaS design
@@ -145,6 +150,16 @@ https://team-task-manager-saas.onrender.com
 - Comment
 - Invitation
 
+```text
+User
+├── Membership
+│   └── Team
+│       ├── Project
+│       │   └── Task
+│       │       └── Comment
+│       └── Invitation
+└── Assigned Tasks
+```
 ---
 
 ## Application Workflow
@@ -155,7 +170,7 @@ https://team-task-manager-saas.onrender.com
 4. Projects contain tasks
 5. Team members collaborate through comments
 6. Admins invite users via email
-7. Invitation emails are processed asynchronously with Sidekiq
+7. Invitation emails are queued using Sidekiq and processed asynchronously through ActiveJob.
 
 ---
 
@@ -209,18 +224,33 @@ docker compose up
 bundle exec rspec
 ```
 
+### Windows Users (Run Tailwind watcher)
+```bash
+rails tailwindcss:watch
+```
 ---
 
 ## Future Improvements
 
 - Real-time notifications with ActionCable
 - File uploads
-- Mobile API support
+- Public REST API
 - Activity tracking
 - Advanced analytical dashboard
 
 ---
 
+## Key Technical Challenges
+
+During development, several engineering challenges were solved, including:
+
+- Implementing multi-tenant authorization so users only access resources belonging to their teams.
+- Using Turbo Streams to provide dynamic CRUD updates without writing custom JavaScript.
+- Designing cascading deletion with Active Record associations.
+- Optimizing dashboard queries using eager loading to avoid N+1 queries.
+- Offloading email delivery to Sidekiq background jobs.
+
+---
 
 ## Author
 
