@@ -60,23 +60,37 @@
   </div>
 
   <div class="bg-white rounded-lg shadow p-6">
-    <h2 class="text-xl font-semibold mb-4">
-      Pending Invitations
-    </h2>
+    <div class="flex items-center justify-between gap-4 mb-4">
+      <h2 class="text-xl font-semibold">
+        Pending Invitations
+      </h2>
+
+      <% if @pending_invitations.any? %>
+        <%= link_to "View Invitations",
+            invitations_path,
+            class: "text-sm font-medium text-blue-600 hover:underline" %>
+      <% end %>
+    </div>
 
     <% if @pending_invitations.any? %>
       <ul class="space-y-3">
         <% @pending_invitations.each do |invitation| %>
-          <li class="border-b pb-2">
-            <div>
-              <strong>Team:</strong>
-              <%= invitation.team.name %>
-            </div>
+          <li class="border-b last:border-b-0 pb-3 last:pb-0">
 
-            <div class="text-sm text-gray-600">
-              Role:
-              <%= invitation.role %>
-            </div>
+            <%= link_to invitations_path,
+                class: "block rounded hover:bg-gray-50 p-2 -mx-2 transition" do %>
+
+              <div class="font-medium text-blue-600">
+                <%= invitation.team.name %>
+              </div>
+
+              <div class="text-sm text-gray-600 mt-1">
+                Role:
+                <%= invitation.role.humanize %>
+              </div>
+
+            <% end %>
+
           </li>
         <% end %>
       </ul>
