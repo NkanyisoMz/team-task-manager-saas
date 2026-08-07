@@ -4,7 +4,7 @@
     <%= @team.name %> Projects
   </h1>
 
-  <% if current_user.memberships.find_by(team: @team)&.admin? %>
+  <% if @is_admin %>
 
     <%= link_to "New Project",
         new_team_project_path(@team),

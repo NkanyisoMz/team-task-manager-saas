@@ -14,6 +14,10 @@ class ProjectsController < ApplicationController
       "%#{params[:query]}%"
       )
     end
+     @is_admin = current_user
+      .memberships
+      .find_by(team: @team)
+      &.admin?
   end
 
   def new

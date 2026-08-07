@@ -7,7 +7,7 @@
                 team_projects_path(team),
                 class: "text-xl font-semibold text-blue-600 hover:underline" %>
 
-            <% if current_user.memberships.find_by(team: team)&.admin? %>
+            <% if @memberships_by_team_id[team.id]&.admin? %>
 
                 <div class="flex gap-2">
 

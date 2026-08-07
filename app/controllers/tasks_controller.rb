@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-  tasks = Task.where(project: @project)
+  tasks = Task.where(project: @project).includes(:assignee)
 
   if params[:query].present?
     tasks = tasks.where(
@@ -23,6 +23,11 @@ class TasksController < ApplicationController
   @pagy, @tasks = pagy(tasks)
 
   @task = @project.tasks.new
+
+  @is_admin = current_user
+    .memberships
+    .find_by(team: @team)
+    &.admin?
   end
 
   def new

@@ -4,7 +4,10 @@ class TeamsController < ApplicationController
   before_action :require_admin!, only: :destroy
 
   def index
-    @teams = current_user.teams
+    @teams = current_user.teams.includes(:memberships)
+
+    @memberships_by_team_id =
+      current_user.memberships.index_by(&:team_id)
   end
 
   def new
